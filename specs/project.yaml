@@ -1,0 +1,37 @@
+project:
+  id: breakboard
+  name: BreakBoard
+  phase: planning
+  repository_is_source_of_truth: true
+execution:
+  implementation: locked
+  source_code: not_started
+  technology: undecided
+  tests_before_implementation: required
+  unspecified_behavior: forbidden
+current_gate:
+  id: BB-MUT-GATE-001
+  name: mutation_system_v0_1
+  status: not_started
+completed_gates:
+  - initial_concept
+  - paper_prototype_v0_1
+  - canonical_game_rules_v0_1
+core:
+  genre: [tactical_board_game, roguelite, strategy]
+  mutation_domains: [piece, board, rule]
+  deterministic_resolution: true
+  run_seeded: true
+canonical_entrypoints:
+  agent_protocol: AGENTS.md
+  master_spec: docs/MASTER-SPEC.md
+  current_state: docs/CURRENT-STATE.md
+  rules: docs/game/CANONICAL-RULES.md
+  open_questions: docs/OPEN-QUESTIONS.md
+  traceability: docs/TRACEABILITY.md
+next_allowed_work:
+  - mutation_trigger_taxonomy
+  - mutation_target_taxonomy
+  - mutation_effect_taxonomy
+  - mutation_resolution_semantics
+  - mutation_composition_semantics
