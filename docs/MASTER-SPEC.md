@@ -14,7 +14,9 @@ This is the canonical index, not a duplicate of every specification.
 ## Game design
 - [Paper Prototype v0.1](game/PAPER-PROTOTYPE.md)
 - [Canonical Game Rules v0.1](game/CANONICAL-RULES.md)
-- [Mutation System](game/MUTATION-SYSTEM.md) — current gate; incomplete
+- [Mutation System v0.1](game/MUTATION-SYSTEM.md) — specified
+- [Battle System v0.1](game/BATTLE-SYSTEM.md) — specified
+- Run & Progression System v0.1 — current design gate; not yet specified
 
 ## Control
 - [Current State](CURRENT-STATE.md)

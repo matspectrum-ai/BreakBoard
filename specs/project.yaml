@@ -10,14 +10,15 @@ execution:
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
-  id: BB-BATTLE-GATE-001
-  name: battle_system_v0_1
+  id: BB-RUN-GATE-001
+  name: run_progression_system_v0_1
   status: not_started
 completed_gates:
   - initial_concept
   - paper_prototype_v0_1
   - canonical_game_rules_v0_1
   - mutation_system_v0_1
+  - battle_system_v0_1
 core:
   genre: [tactical_board_game, roguelite, strategy]
   mutation_domains: [piece, board, rule]
@@ -29,14 +30,15 @@ canonical_entrypoints:
   current_state: docs/CURRENT-STATE.md
   rules: docs/game/CANONICAL-RULES.md
   mutation_system: docs/game/MUTATION-SYSTEM.md
+  battle_system: docs/game/BATTLE-SYSTEM.md
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - battle_setup_orientation
-  - battle_turn_lifecycle
-  - action_legality
-  - movement_capture_transactions
-  - victory_checkpoints
-  - game_state_invariants
-  - disconnected_topology
-  - collapse_anti_stall
+  - run_lifecycle
+  - region_encounter_graph
+  - encounter_categories
+  - mutation_reward_flow
+  - run_persistent_state
+  - elite_boss_system
+  - meta_progression
+  - seeded_run_generation
