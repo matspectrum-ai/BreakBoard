@@ -11,20 +11,22 @@ completed:
   - ai_native_production_constraints
   - paper_prototype_v0_1
   - canonical_game_rules_v0_1
+  - mutation_system_v0_1
 current_gate:
-  id: BB-MUT-GATE-001
-  name: Mutation System v0.1
+  id: BB-BATTLE-GATE-001
+  name: Battle System v0.1
   status: NOT_STARTED
 next:
-  - formalize mutation triggers
-  - formalize targets
-  - formalize effects
-  - formalize durations
-  - formalize stacking
-  - formalize precedence
-  - formalize composition
-  - validate representative mutations against primitives
+  - formalize battle setup and orientation
+  - formalize battle and turn lifecycle
+  - formalize action legality and Pass
+  - formalize movement and capture transactions
+  - formalize stable-state victory checkpoints
+  - formalize invalid GameState invariants
+  - formalize disconnected topology behavior
+  - formalize Collapse anti-stall policy
+  - validate battle termination and representative mutation interactions
 implementation_unlock: false
 ```
 
-The next allowed work is planning Mutation System v0.1. Selecting an engine or writing game implementation is out of scope.
+Mutation System v0.1 is closed. The next allowed work is planning Battle System v0.1. Selecting an engine or writing production game implementation remains out of scope.
