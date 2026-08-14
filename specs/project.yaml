@@ -10,8 +10,8 @@ execution:
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
-  id: BB-RUN-GATE-001
-  name: run_progression_system_v0_1
+  id: BB-CONTENT-GATE-001
+  name: content_system_initial_content_v0_1
   status: not_started
 completed_gates:
   - initial_concept
@@ -19,11 +19,15 @@ completed_gates:
   - canonical_game_rules_v0_1
   - mutation_system_v0_1
   - battle_system_v0_1
+  - run_progression_system_v0_1
 core:
   genre: [tactical_board_game, roguelite, strategy]
   mutation_domains: [piece, board, rule]
   deterministic_resolution: true
   run_seeded: true
+  run_regions_baseline: 3
+  route_topology: layered_dag
+  meta_progression: horizontal
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
@@ -31,14 +35,19 @@ canonical_entrypoints:
   rules: docs/game/CANONICAL-RULES.md
   mutation_system: docs/game/MUTATION-SYSTEM.md
   battle_system: docs/game/BATTLE-SYSTEM.md
+  run_system: docs/game/RUN-SYSTEM.md
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - run_lifecycle
-  - region_encounter_graph
-  - encounter_categories
-  - mutation_reward_flow
-  - run_persistent_state
-  - elite_boss_system
-  - meta_progression
-  - seeded_run_generation
+  - content_taxonomy
+  - launch_content_minimums
+  - initial_piece_mutation_catalog
+  - initial_rule_mutation_catalog
+  - board_feature_catalog
+  - encounter_templates
+  - events
+  - elites
+  - bosses
+  - unlock_conditions
+  - starter_content_pool
+  - content_contract_validation
