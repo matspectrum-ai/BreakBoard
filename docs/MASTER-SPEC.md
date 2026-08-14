@@ -16,7 +16,8 @@ This is the canonical index, not a duplicate of every specification.
 - [Canonical Game Rules v0.1](game/CANONICAL-RULES.md)
 - [Mutation System v0.1](game/MUTATION-SYSTEM.md) — specified
 - [Battle System v0.1](game/BATTLE-SYSTEM.md) — specified
-- Run & Progression System v0.1 — current design gate; not yet specified
+- [Run & Progression System v0.1](game/RUN-SYSTEM.md) — specified
+- Content System & Initial Content Set v0.1 — current design gate; not yet specified
 
 ## Control
 - [Current State](CURRENT-STATE.md)
