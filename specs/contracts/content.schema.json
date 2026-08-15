@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:breakboard:schema:content:0.1",
+  "title": "BreakBoard Content Envelope v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "schema_version", "status", "tags", "complexity_cost", "presentation", "mechanics"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^BB-[A-Z0-9-]+$"},
+    "kind": {"enum": ["piece_mutation", "rule_mutation", "board_feature", "encounter_template", "event", "elite", "boss"]},
+    "schema_version": {"type": "string", "minLength": 1},
+    "status": {"enum": ["canonical", "experimental", "deprecated"]},
+    "tags": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "complexity_cost": {"type": "integer", "minimum": 0},
+    "regions": {"type": "array", "items": {"type": "integer", "minimum": 1}, "uniqueItems": true},
+    "unlock": {"type": "object"},
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name_key": {"type": "string"},
+        "description_key": {"type": "string"},
+        "icon_token": {"type": "string"},
+        "vfx_token": {"type": "string"},
+        "palette_token": {"type": "string"}
+      }
+    },
+    "mechanics": {
+      "type": "object",
+      "properties": {
+        "rarity": {"enum": ["COMMON", "RARE"]},
+        "lifetime": {"enum": ["instant", "turn", "battle", "run"]},
+        "stacking": {"enum": ["prohibited", "replace", "refresh", "independent"]},
+        "requires": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "excludes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "overrides": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "reactions": {"type": "array", "items": {"type": "object"}},
+        "modifiers": {"type": "array", "items": {"type": "object"}},
+        "runtime_state_schema": {"type": "object"},
+        "configuration": {"type": "object"},
+        "choices": {"type": "array", "items": {"type": "object"}},
+        "reward_policy": {"type": "object"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"kind": {"const": "piece_mutation"}}},
+      "then": {"properties": {"mechanics": {"required": ["stacking"]}}}
+    },
+    {
+      "if": {"properties": {"kind": {"const": "rule_mutation"}}},
+      "then": {"properties": {"mechanics": {"required": ["stacking"]}}}
+    },
+    {
+      "if": {"properties": {"kind": {"const": "event"}}},
+      "then": {"properties": {"mechanics": {"required": ["choices"]}}}
+    }
+  ]
+}
