@@ -1,6 +1,6 @@
 # BreakBoard Master Specification
 
-Status: **Planning / Implementation LOCKED**
+Status: **Planning complete through Architecture / Implementation LOCKED**
 
 This is the canonical index, not a duplicate of every specification.
 
@@ -42,7 +42,7 @@ This is the canonical index, not a duplicate of every specification.
 - [Haptic Feedback](audio/HAPTICS.md)
 - [Audio Asset Policy](audio/ASSET-POLICY.md)
 
-## Formal contracts — specified
+## Formal contracts — closed / P0 PASS
 - [Domain Model v0.1](contracts/DOMAIN-MODEL.md)
 - [State Contracts v0.1](contracts/STATE-CONTRACTS.md)
 - [Resolution Contract v0.1](contracts/RESOLUTION-CONTRACT.md)
@@ -58,21 +58,31 @@ Machine-readable contract schemas:
 - [`specs/contracts/resolution.schema.json`](../specs/contracts/resolution.schema.json)
 - [`specs/contracts/content.schema.json`](../specs/contracts/content.schema.json)
 
-## Architecture — current gate IN_PROGRESS
-- [Architecture Evaluation v0.1](architecture/ARCHITECTURE-EVALUATION.md)
-- [ADR-001 — TypeScript + PixiJS 8 + Tauri 2](architecture/ADR-001-TECH-STACK.md) — ACCEPTED
-- [RNG Algorithm & Namespace Derivation v0.1](architecture/RNG-SPEC.md) — specified
-- [Module & Dependency Boundaries v0.1](architecture/MODULE-BOUNDARIES.md) — specified candidate
+## Architecture — BB-ARCH-GATE-001 CLOSED
+- [Architecture Evaluation v0.1](architecture/ARCHITECTURE-EVALUATION.md) — specified
+- [ADR-001 — TypeScript + PixiJS 8 + Tauri 2](architecture/ADR-001-TECH-STACK.md) — accepted
+- [RNG Algorithm & Namespace Derivation](architecture/RNG-SPEC.md) — specified + golden vectors
+- [Module & Dependency Boundaries](architecture/MODULE-BOUNDARIES.md) — specified
+- [Content Authoring/Build/Runtime Pipeline](architecture/CONTENT-PIPELINE.md) — specified
+- [ADR-002 — Stable Run Persistence Protocol](architecture/ADR-002-PERSISTENCE-PROTOCOL.md) — accepted
+- [Concrete RED-First Test Harness](architecture/TEST-HARNESS.md) — specified
+- [Application-to-Presentation Bridge](architecture/PRESENTATION-BRIDGE.md) — specified
+- [Desktop Packaging & Platform QA](architecture/PACKAGING-QA.md) — specified
+- [Dependency & Determinism Boundary Enforcement](architecture/BOUNDARY-ENFORCEMENT.md) — specified
+- [Implementation Readiness Audit](architecture/IMPLEMENTATION-READINESS-AUDIT.md) — PASS / HELD
 
-Selected stack: TypeScript strict + PixiJS 8/WebGL + semantic DOM/CSS + Tauri 2 shell; Ajv2020 + Vitest + fast-check; Node 24 LTS build line. Production implementation remains locked.
+Selected architecture: TypeScript strict + PixiJS 8/WebGL + semantic DOM/CSS + Tauri 2; Node 24 LTS/pnpm/Vite; Ajv2020; Vitest + fast-check; browser verification with Playwright; packaged Tauri E2E with WebdriverIO; xoshiro128ss-v1 with SHA-256 namespaces.
+
+## Next gate — prepared but NOT STARTED
+**BB-IMPL-GATE-001 — Implementation — RED — READY_NOT_STARTED**
+
+Entry condition: explicit user authorization. Readiness does not equal authorization.
 
 ## Control
 - [Current State](CURRENT-STATE.md)
 - [Open Questions](OPEN-QUESTIONS.md)
 - [Traceability](TRACEABILITY.md)
-
-## Machine-readable state
 - [`specs/project.yaml`](../specs/project.yaml)
 
-## Remaining Architecture work
-Content build/validation pipeline, atomic persistence adapter, concrete RED-first harness/bootstrap, browser/Tauri adapter verification, packaging/QA baseline, boundary enforcement, and implementation-unlock audit.
+## Execution hold
+Implementation remains locked by explicit user instruction. No implementation/bootstrap artifacts should exist until the hold is explicitly lifted.

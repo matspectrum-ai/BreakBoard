@@ -1,6 +1,6 @@
 # Architecture Evaluation v0.1
 
-Status: **IN PROGRESS — BB-ARCH-GATE-001**
+Status: **SPECIFIED — BB-ARCH-GATE-001 CLOSED**
 Evaluation date: 2026-08-15
 
 ## Objective
@@ -23,45 +23,22 @@ Select the implementation architecture that best satisfies the already-closed Br
 
 ### A — TypeScript + PixiJS 8 + Tauri 2
 Strengths:
-- TypeScript domain can be isolated as ordinary pure modules with no renderer or OS dependency.
-- JSON Schema 2020-12 can be validated directly with Ajv 8/Ajv2020.
-- Vitest + fast-check map directly to the required example/property/metamorphic verification model.
-- PixiJS 8 provides a focused 2D renderer, primitive/SVG drawing, scene graph, pointer/touch interaction, and a production-recommended WebGL renderer.
-- DOM/CSS can implement menus/cards/accessibility while PixiJS owns only the tactical board/VFX surface.
-- Tauri 2 supplies a native desktop shell and distribution path without moving game rules into Rust.
-- Tauri 2 preserves an Android/iOS path if mobile becomes a later product target.
+- pure TypeScript domain can be isolated from renderer and OS;
+- direct JSON Schema 2020-12 validation with Ajv2020;
+- Vitest + fast-check directly satisfy RED/property/metamorphic requirements;
+- PixiJS is a focused 2D renderer with a production WebGL path;
+- semantic DOM/CSS handles text-heavy accessible UI while Pixi owns the board/VFX surface;
+- Tauri provides desktop shell/native persistence/packaging without moving game rules to Rust.
 
-Primary risk:
-- Tauri uses the operating system WebView, so renderer/browser capability differs by platform/version.
+Primary risk: Tauri relies on system WebViews, so platform rendering behavior is not byte-identical. Mitigation is strict separation of gameplay authority plus real-browser and packaged-platform QA; WebGPU is excluded from v0.1.
 
-Mitigation:
-- v0.1 explicitly targets PixiJS WebGL, not WebGPU;
-- gameplay logic never depends on browser timing or rendering;
-- browser-mode tests plus packaged Tauri smoke tests are separate gates;
-- graphics remain intentionally modest and procedural.
+### B — Godot 4.x + GDScript
+Capable integrated game engine with mature 2D and exports, but the BreakBoard contract/schema/property-test workflow would require more custom infrastructure and creates more pressure toward scene/gameplay coupling than the selected architecture needs.
 
-### B — Godot 4.7.x + GDScript
-Strengths:
-- integrated open-source game engine with mature 2D, UI, input, audio, packaging, and editor workflows;
-- strong fit for a board game visually;
-- direct desktop/mobile export paths.
+### C — Defold + Lua
+Small capable 2D runtime with broad platform reach, but requires more bespoke JSON Schema/property-test/type tooling for this contract-heavy project.
 
-Tradeoff against BreakBoard contracts:
-- JSON Schema 2020-12, property-based testing/shrinking, and the RED-first pure-domain test model require more custom/plugin infrastructure than the TypeScript option;
-- stronger temptation to couple scene nodes and gameplay authority unless discipline is maintained.
-
-### C — Defold 1.13.x + Lua
-Strengths:
-- very small runtime/editor footprint;
-- strong cross-platform focus and good 2D suitability.
-
-Tradeoff against BreakBoard contracts:
-- less direct fit for JSON Schema-driven type generation/validation and property-based test tooling;
-- more bespoke infrastructure would be needed for our formal contract/test requirements.
-
-## Weighted architecture judgment
-The following scores are BreakBoard-specific engineering judgments, not external benchmarks.
-
+## Weighted BreakBoard-specific judgment
 | Criterion | Weight | TS + Pixi + Tauri | Godot + GDScript | Defold + Lua |
 |---|---:|---:|---:|---:|
 | Contract/schema fit | 20 | 20 | 13 | 11 |
@@ -71,29 +48,18 @@ The following scores are BreakBoard-specific engineering judgments, not external
 | Accessible UI fit | 10 | 10 | 7 | 6 |
 | Desktop/touch portability | 10 | 9 | 10 | 10 |
 | Runtime/build simplicity | 5 | 4 | 4 | 5 |
-| Isolation of domain from presentation | 5 | 5 | 4 | 4 |
+| Domain/presentation isolation | 5 | 5 | 4 | 4 |
 | **Total /100** | **100** | **97** | **78** | **70** |
 
-## Decision
-**Selected architecture candidate: TypeScript + PixiJS 8 + Tauri 2.**
+Scores are architecture judgments for BreakBoard, not external performance benchmarks.
 
-This selection is accepted in ADR-001. It does not unlock production implementation until the remaining Architecture micro-gates are closed.
+## Final decision
+**TypeScript strict + PixiJS 8/WebGL + semantic DOM/CSS + Tauri 2** is the accepted v0.1 architecture. Node 24 LTS/pnpm/Vite provide build tooling; Ajv2020 validates canonical schemas; Vitest/fast-check provide core verification; Rust remains platform-adapter-only.
 
-## Current official evidence used for the decision
-- Godot official archive: 4.7.1 is the current stable patch line as of this evaluation: https://godotengine.org/download/archive/
-- Defold official release/news: 1.13.0 is the current stable release line reviewed: https://defold.com/2026/06/22/Defold-1-13-0/
-- Tauri 2 architecture and platform model: https://v2.tauri.app/concept/architecture/
-- Tauri 2 cross-platform/distribution documentation: https://v2.tauri.app/distribute/
-- PixiJS 8 architecture/renderers: https://pixijs.com/8.x/guides/concepts/architecture and https://pixijs.com/8.x/guides/components/renderers
-- Vitest official guide: https://vitest.dev/guide/
-- fast-check official docs: https://fast-check.dev/docs/introduction/
-- Ajv JSON Schema 2020-12 support: https://ajv.js.org/json-schema.html
-- Node.js 24 LTS status: https://nodejs.org/en/blog/release/v24.11.0
+RNG is bound separately by `RNG-SPEC.md`. Persistence is bound by ADR-002. Content pipeline, test harness, presentation bridge, packaging QA and dependency enforcement are now specified in the other Architecture documents.
 
-## Next architecture work
-- finish module/dependency boundaries;
-- specify build-time/runtime content pipeline;
-- specify atomic persistence adapter;
-- specify concrete test harness and RED bootstrap;
-- specify browser/Tauri verification matrix and packaging baseline;
-- perform final Architecture consistency/unlock audit.
+## Architecture closure result
+All Architecture micro-gates are closed. The implementation-readiness audit is PASS, but the execution lock remains in force by explicit user instruction. No implementation artifacts are created until a later explicit authorization.
+
+## Evidence reviewed
+Official project documentation was used for the architecture choice, including Tauri 2 architecture/distribution/testing, PixiJS 8 renderers, Ajv JSON Schema 2020-12 support, Vitest projects/browser mode, fast-check property testing, and the xoshiro/xoroshiro reference.

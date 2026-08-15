@@ -6,14 +6,23 @@ project:
   content_version: 0.1.0
 execution:
   implementation: locked
+  implementation_ready: true
+  implementation_authorized: false
+  implementation_unlock: false
+  hold_reason: explicit_user_instruction_do_not_enter_implementation
   source_code: not_started
-  technology: selected_in_arch_gate
+  technology: selected
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
   id: BB-ARCH-GATE-001
   name: architecture_technology_selection_v0_1
-  status: in_progress
+  status: closed
+next_gate:
+  id: BB-IMPL-GATE-001
+  name: implementation_red
+  status: ready_not_started
+  entry_condition: explicit_user_authorization
 completed_gates:
   - initial_concept
   - paper_prototype_v0_1
@@ -26,6 +35,7 @@ completed_gates:
   - visual_identity_procedural_art_system_v0_1
   - audio_music_haptics_system_v0_1
   - formal_domain_contracts_verification_plan_v0_1
+  - architecture_technology_selection_v0_1
 technology:
   language: typescript_strict
   renderer: pixijs_8_webgl
@@ -38,6 +48,10 @@ technology:
   schema_validator: ajv_8_ajv2020
   test_runner: vitest_4_line
   property_testing: fast_check
+  browser_test_provider: playwright
+  tauri_e2e: webdriverio_tauri_service
+  architecture_dependency_checker: dependency_cruiser
+  deterministic_sha256_library_baseline: noble_hashes_v2_sha2
   audio: web_audio_presentation_layer
   backend_required: false
 rng:
@@ -45,22 +59,57 @@ rng:
   namespace_derivation_version: sha256-generation-v1
   output: uint32
   golden_vectors: docs/architecture/RNG-SPEC.md
+content_pipeline:
+  authoring: restricted_yaml_or_json
+  canonical_model: json
+  validator: ajv2020_plus_semantic_validators
+  runtime_artifact: deterministic_content_bundle_and_manifest
+  runtime_authoring_parser: false
+  fail_closed: true
+persistence:
+  p0_scope: stable_run_checkpoints
+  adapter: tauri_rust_persistence_port
+  protocol: immutable_generation_files_v1
+  integrity: canonical_envelope_sha256
+  recovery: newest_valid_compatible_generation
+  retained_valid_generations_minimum: 2
+  mid_battle_policy: p1_release_readiness_open
+testing:
+  node_projects: [contracts, domain, catalog, application]
+  browser_project: vitest_browser_playwright_chromium_webkit
+  property_testing_ci_min_runs: 500
+  property_testing_scheduled_min_runs: 5000
+  native_adapter_tests: cargo_test
+  packaged_e2e: webdriverio_tauri
+  red_first: required
+packaging:
+  renderer_baseline: webgl
+  windows: nsis_x86_64
+  linux: [appimage_x86_64, deb_x86_64]
+  macos: dmg_signed_notarized
+  actual_packaged_platform_smoke_required: true
+boundaries:
+  typescript_project_references: required
+  package_exports: required
+  dependency_cruiser: required
+  circular_dependencies: forbidden
+  domain_dom_node_tauri_pixi_imports: forbidden
+  domain_ambient_random_wall_clock: forbidden
 architecture_progress:
   candidate_evaluation: complete
   adr_001_stack: accepted
   rng_spec: specified
-  module_boundaries: specified_candidate
-  content_pipeline: pending
-  persistence_adapter: pending
-  test_harness_bootstrap: pending
-  presentation_adapter_verification: pending
-  packaging_qa: pending
-  dependency_enforcement: pending
-  unlock_audit: pending
+  module_boundaries: specified
+  content_pipeline: specified
+  persistence_adapter: specified
+  test_harness: specified
+  presentation_bridge: specified
+  packaging_qa: specified
+  dependency_enforcement: specified
+  implementation_readiness_audit: pass
 contracts:
   schema_notation: json_schema_2020_12
   p0_traceability_audit: pass
-  implementation_unlock: false
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
@@ -69,6 +118,13 @@ canonical_entrypoints:
   adr_001_stack: docs/architecture/ADR-001-TECH-STACK.md
   rng_spec: docs/architecture/RNG-SPEC.md
   module_boundaries: docs/architecture/MODULE-BOUNDARIES.md
+  content_pipeline: docs/architecture/CONTENT-PIPELINE.md
+  adr_002_persistence: docs/architecture/ADR-002-PERSISTENCE-PROTOCOL.md
+  test_harness: docs/architecture/TEST-HARNESS.md
+  presentation_bridge: docs/architecture/PRESENTATION-BRIDGE.md
+  packaging_qa: docs/architecture/PACKAGING-QA.md
+  boundary_enforcement: docs/architecture/BOUNDARY-ENFORCEMENT.md
+  implementation_readiness_audit: docs/architecture/IMPLEMENTATION-READINESS-AUDIT.md
   domain_model: docs/contracts/DOMAIN-MODEL.md
   state_contracts: docs/contracts/STATE-CONTRACTS.md
   resolution_contract: docs/contracts/RESOLUTION-CONTRACT.md
@@ -76,10 +132,13 @@ canonical_entrypoints:
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - content_authoring_build_validation_pipeline
-  - atomic_persistence_adapter_protocol
-  - concrete_red_first_test_harness_bootstrap
-  - presentation_event_bridge_and_adapter_verification
-  - desktop_packaging_platform_qa
-  - dependency_boundary_enforcement
-  - architecture_consistency_unlock_audit
+  - await_explicit_user_authorization_for_BB_IMPL_GATE_001
+forbidden_until_authorized:
+  - create_package_json_or_lockfile
+  - scaffold_typescript_workspace
+  - create_source_modules
+  - materialize_test_harness_or_red_tests
+  - create_pixi_application
+  - create_tauri_scaffold
+  - generate_contract_types
+  - write_production_code

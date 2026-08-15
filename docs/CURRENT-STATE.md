@@ -4,6 +4,7 @@
 project: BreakBoard
 phase: planning
 implementation: LOCKED
+implementation_readiness: READY_AWAITING_EXPLICIT_USER_AUTHORIZATION
 source_code: NOT_STARTED
 technology: TYPESCRIPT_PIXIJS8_TAURI2_SELECTED
 content_version: 0.1.0
@@ -20,29 +21,29 @@ completed:
   - visual_identity_procedural_art_system_v0_1
   - audio_music_haptics_system_v0_1
   - formal_domain_contracts_verification_plan_v0_1
+  - architecture_technology_selection_v0_1
 current_gate:
   id: BB-ARCH-GATE-001
   name: Architecture & Technology Selection v0.1
-  status: IN_PROGRESS
-architecture_progress:
-  - architecture_candidate_evaluation_complete
-  - adr_001_typescript_pixijs8_tauri2_accepted
-  - node_24_lts_build_line_selected
-  - pixijs_webgl_v0_1_renderer_selected
-  - ajv2020_vitest_fast_check_validation_stack_selected
-  - xoshiro128ss_v1_rng_selected
-  - sha256_generation_namespace_derivation_selected
-  - rng_golden_vectors_published
-  - module_dependency_boundaries_specified_candidate
-remaining:
-  - content_authoring_build_runtime_validation_pipeline
-  - atomic_persistence_adapter_protocol
-  - concrete_red_first_test_harness_bootstrap
-  - browser_tauri_presentation_event_bridge_verification
-  - desktop_packaging_and_platform_qa_baseline
-  - dependency_boundary_enforcement
-  - architecture_consistency_and_implementation_unlock_audit
+  status: CLOSED
+architecture_closure:
+  stack_and_rng: PASS
+  module_boundaries: PASS
+  content_pipeline: PASS
+  stable_run_persistence_protocol: PASS
+  red_first_harness_specification: PASS
+  presentation_bridge: PASS
+  desktop_packaging_qa_baseline: PASS
+  dependency_boundary_enforcement: PASS
+  implementation_readiness_audit: PASS
+next_gate:
+  id: BB-IMPL-GATE-001
+  name: Implementation — RED
+  status: READY_NOT_STARTED
+  entry_condition: EXPLICIT_USER_AUTHORIZATION
+implementation_ready: true
+implementation_authorized: false
 implementation_unlock: false
 ```
 
-BB-ARCH-GATE-001 is in progress. The implementation stack and RNG identity are selected, but production implementation remains locked until the remaining architecture micro-gates and unlock audit close.
+BreakBoard is ready to enter implementation, but it has **not** entered implementation. No source code, workspace bootstrap, test harness implementation, generated types, lockfile, Pixi application or Tauri scaffold may be created until explicit user authorization changes this state.
