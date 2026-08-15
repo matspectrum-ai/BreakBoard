@@ -58,8 +58,13 @@ Machine-readable contract schemas:
 - [`specs/contracts/resolution.schema.json`](../specs/contracts/resolution.schema.json)
 - [`specs/contracts/content.schema.json`](../specs/contracts/content.schema.json)
 
-## Current planning gate
-- **BB-ARCH-GATE-001 — Architecture & Technology Selection v0.1 — NOT_STARTED**
+## Architecture — current gate IN_PROGRESS
+- [Architecture Evaluation v0.1](architecture/ARCHITECTURE-EVALUATION.md)
+- [ADR-001 — TypeScript + PixiJS 8 + Tauri 2](architecture/ADR-001-TECH-STACK.md) — ACCEPTED
+- [RNG Algorithm & Namespace Derivation v0.1](architecture/RNG-SPEC.md) — specified
+- [Module & Dependency Boundaries v0.1](architecture/MODULE-BOUNDARIES.md) — specified candidate
+
+Selected stack: TypeScript strict + PixiJS 8/WebGL + semantic DOM/CSS + Tauri 2 shell; Ajv2020 + Vitest + fast-check; Node 24 LTS build line. Production implementation remains locked.
 
 ## Control
 - [Current State](CURRENT-STATE.md)
@@ -69,5 +74,5 @@ Machine-readable contract schemas:
 ## Machine-readable state
 - [`specs/project.yaml`](../specs/project.yaml)
 
-## Deferred
-Production implementation remains locked. The Architecture gate must select implementation architecture/technology, exact RNG algorithm and golden vectors, persistence strategy, concrete test harness, and deployment/build boundaries before any implementation unlock decision.
+## Remaining Architecture work
+Content build/validation pipeline, atomic persistence adapter, concrete RED-first harness/bootstrap, browser/Tauri adapter verification, packaging/QA baseline, boundary enforcement, and implementation-unlock audit.

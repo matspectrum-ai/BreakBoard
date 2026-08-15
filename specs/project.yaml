@@ -7,13 +7,13 @@ project:
 execution:
   implementation: locked
   source_code: not_started
-  technology: undecided
+  technology: selected_in_arch_gate
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
   id: BB-ARCH-GATE-001
   name: architecture_technology_selection_v0_1
-  status: not_started
+  status: in_progress
 completed_gates:
   - initial_concept
   - paper_prototype_v0_1
@@ -26,67 +26,60 @@ completed_gates:
   - visual_identity_procedural_art_system_v0_1
   - audio_music_haptics_system_v0_1
   - formal_domain_contracts_verification_plan_v0_1
+technology:
+  language: typescript_strict
+  renderer: pixijs_8_webgl
+  ui: semantic_dom_css_typescript
+  desktop_shell: tauri_2
+  native_shell_language: rust_adapters_only
+  build_node_line: node_24_lts
+  package_manager: pnpm
+  build_tool: vite
+  schema_validator: ajv_8_ajv2020
+  test_runner: vitest_4_line
+  property_testing: fast_check
+  audio: web_audio_presentation_layer
+  backend_required: false
+rng:
+  algorithm_id: xoshiro128ss-v1
+  namespace_derivation_version: sha256-generation-v1
+  output: uint32
+  golden_vectors: docs/architecture/RNG-SPEC.md
+architecture_progress:
+  candidate_evaluation: complete
+  adr_001_stack: accepted
+  rng_spec: specified
+  module_boundaries: specified_candidate
+  content_pipeline: pending
+  persistence_adapter: pending
+  test_harness_bootstrap: pending
+  presentation_adapter_verification: pending
+  packaging_qa: pending
+  dependency_enforcement: pending
+  unlock_audit: pending
 contracts:
   schema_notation: json_schema_2020_12
-  domain_model: specified
-  state_contracts: specified
-  resolution_contract: specified
-  rule_query_algebra: specified
-  bounded_resolution: specified
-  rng_persistence_contract: specified
-  content_contracts: specified
-  machine_readable_schemas: [state, resolution, content]
-  verification_plan: specified
   p0_traceability_audit: pass
-contract_decisions:
-  reaction_priority_range: [-1000, 1000]
-  reaction_priority_default: 0
-  resolution_budget_work_units: 512
-  cycle_projection: canonical_json_sha256_plus_byte_equality
-  mid_battle_recovery_priority: p1_before_release_readiness
-  rng_algorithm_selection: architecture_gate
-core:
-  genre: [tactical_board_game, roguelite, strategy]
-  mutation_domains: [piece, board, rule]
-  deterministic_resolution: true
-  run_seeded: true
-  perfect_information_v0_1: true
-platform_scope:
-  launch_baseline: desktop
-  touch_compatible_architecture: true
-  mobile_release_committed: false
+  implementation_unlock: false
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
   current_state: docs/CURRENT-STATE.md
-  rules: docs/game/CANONICAL-RULES.md
-  mutation_system: docs/game/MUTATION-SYSTEM.md
-  battle_system: docs/game/BATTLE-SYSTEM.md
-  run_system: docs/game/RUN-SYSTEM.md
-  content_system: docs/content/CONTENT-SYSTEM.md
+  architecture_evaluation: docs/architecture/ARCHITECTURE-EVALUATION.md
+  adr_001_stack: docs/architecture/ADR-001-TECH-STACK.md
+  rng_spec: docs/architecture/RNG-SPEC.md
+  module_boundaries: docs/architecture/MODULE-BOUNDARIES.md
   domain_model: docs/contracts/DOMAIN-MODEL.md
   state_contracts: docs/contracts/STATE-CONTRACTS.md
   resolution_contract: docs/contracts/RESOLUTION-CONTRACT.md
-  rule_query_algebra: docs/contracts/RULE-QUERY-ALGEBRA.md
-  bounded_resolution: docs/contracts/BOUNDED-RESOLUTION.md
-  rng_persistence_contract: docs/contracts/RNG-PERSISTENCE-CONTRACT.md
-  content_contracts: docs/contracts/CONTENT-CONTRACTS.md
   verification_plan: docs/contracts/VERIFICATION-PLAN.md
-  p0_traceability_audit: docs/contracts/P0-TRACEABILITY-AUDIT.md
-  state_schema: specs/contracts/state.schema.json
-  resolution_schema: specs/contracts/resolution.schema.json
-  content_schema: specs/contracts/content.schema.json
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - architecture_requirements
-  - engine_framework_language_evaluation
-  - rng_algorithm_and_golden_vectors
-  - module_dependency_boundaries
-  - content_loading_validation_pipeline
-  - persistence_adapter_atomic_save_strategy
-  - concrete_red_first_test_harness
-  - presentation_domain_event_bridge
-  - desktop_build_packaging_baseline
-  - architecture_adrs
-  - implementation_unlock_criteria
+  - content_authoring_build_validation_pipeline
+  - atomic_persistence_adapter_protocol
+  - concrete_red_first_test_harness_bootstrap
+  - presentation_event_bridge_and_adapter_verification
+  - desktop_packaging_platform_qa
+  - dependency_boundary_enforcement
+  - architecture_consistency_unlock_audit

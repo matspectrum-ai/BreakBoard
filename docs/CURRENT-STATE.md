@@ -5,7 +5,7 @@ project: BreakBoard
 phase: planning
 implementation: LOCKED
 source_code: NOT_STARTED
-technology: UNDECIDED
+technology: TYPESCRIPT_PIXIJS8_TAURI2_SELECTED
 content_version: 0.1.0
 completed:
   - initial_concept
@@ -23,19 +23,26 @@ completed:
 current_gate:
   id: BB-ARCH-GATE-001
   name: Architecture & Technology Selection v0.1
-  status: NOT_STARTED
-next:
-  - derive architecture requirements from canonical contracts
-  - evaluate engine/framework and language options against deterministic-domain constraints
-  - select exact PRNG and namespace derivation algorithm and publish golden vectors
-  - define domain/module boundaries and dependency direction
-  - define content loading/schema validation pipeline
-  - define stable persistence adapter and atomic-save strategy
-  - define concrete RED-first test harness and property-testing strategy
-  - define presentation/domain event bridge for UX, VFX, audio and haptics
-  - define build/package/platform baseline for desktop-first launch
-  - record architecture decisions as ADRs and evaluate implementation-unlock criteria
+  status: IN_PROGRESS
+architecture_progress:
+  - architecture_candidate_evaluation_complete
+  - adr_001_typescript_pixijs8_tauri2_accepted
+  - node_24_lts_build_line_selected
+  - pixijs_webgl_v0_1_renderer_selected
+  - ajv2020_vitest_fast_check_validation_stack_selected
+  - xoshiro128ss_v1_rng_selected
+  - sha256_generation_namespace_derivation_selected
+  - rng_golden_vectors_published
+  - module_dependency_boundaries_specified_candidate
+remaining:
+  - content_authoring_build_runtime_validation_pipeline
+  - atomic_persistence_adapter_protocol
+  - concrete_red_first_test_harness_bootstrap
+  - browser_tauri_presentation_event_bridge_verification
+  - desktop_packaging_and_platform_qa_baseline
+  - dependency_boundary_enforcement
+  - architecture_consistency_and_implementation_unlock_audit
 implementation_unlock: false
 ```
 
-BB-CONTRACT-GATE-001 is closed with P0 traceability PASS. Production implementation remains locked. The only allowed next phase is Architecture & Technology Selection v0.1; technology has not yet been selected.
+BB-ARCH-GATE-001 is in progress. The implementation stack and RNG identity are selected, but production implementation remains locked until the remaining architecture micro-gates and unlock audit close.
