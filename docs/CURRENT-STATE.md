@@ -16,22 +16,23 @@ completed:
   - battle_system_v0_1
   - run_progression_system_v0_1
   - content_system_initial_set_v0_1
+  - ux_interaction_system_v0_1
 current_gate:
-  id: BB-UX-GATE-001
-  name: UX & Interaction System v0.1
+  id: BB-ART-GATE-001
+  name: Visual Identity & Procedural Art System v0.1
   status: NOT_STARTED
 next:
-  - formalize information architecture and screens
-  - formalize battle interaction model
-  - formalize mutation reward and replacement UX
-  - formalize route-map interaction
-  - formalize event and boss presentation
-  - formalize game-state readability requirements
-  - formalize input abstraction for desktop and touch
-  - formalize accessibility baseline
-  - formalize feedback/animation semantics without engine choice
-  - validate that all canonical mechanics are legible and controllable
+  - define visual identity principles and reference constraints
+  - define board and piece visual grammar
+  - define Core and ownership visual semantics
+  - define Board Feature visual semantics
+  - define mutation/rule icon system
+  - define procedural VFX and animation language
+  - define UI visual language without changing UX contracts
+  - define asset-generation policy and AI asset boundaries
+  - define palette/contrast requirements compatible with accessibility
+  - validate launch content can be represented without bespoke high-volume assets
 implementation_unlock: false
 ```
 
-Content System & Initial Content Set v0.1 is closed. The next allowed work is planning UX & Interaction System v0.1. Selecting an engine or writing production game implementation remains out of scope.
+UX & Interaction System v0.1 is closed. The next allowed work is planning Visual Identity & Procedural Art System v0.1. Selecting an engine or writing production implementation remains out of scope.

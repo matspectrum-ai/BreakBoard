@@ -25,8 +25,13 @@ This is the canonical index, not a duplicate of every specification.
 - [Encounters, Elites & Bosses](content/ENCOUNTERS-AND-BOSSES.md)
 - [Events & Unlocks](content/EVENTS-AND-UNLOCKS.md)
 
+## UX
+- [UX & Interaction System v0.1](ux/UX-SYSTEM.md) — specified
+- [Interaction Model](ux/INTERACTION-MODEL.md)
+- [Accessibility Baseline](ux/ACCESSIBILITY.md)
+
 ## Current design gate
-- UX & Interaction System v0.1 — not yet specified
+- Visual Identity & Procedural Art System v0.1 — not yet specified
 
 ## Control
 - [Current State](CURRENT-STATE.md)
@@ -37,4 +42,4 @@ This is the canonical index, not a duplicate of every specification.
 - [`specs/project.yaml`](../specs/project.yaml)
 
 ## Deferred
-Technology selection, concrete architecture, renderer, persistence format, platform SDKs, multiplayer, backend, final art production, production tests, and source code remain deferred until prerequisite design gates are complete.
+Technology selection, concrete architecture, renderer, persistence format, platform SDKs, multiplayer, backend, production tests, and source code remain deferred until prerequisite design gates are complete.

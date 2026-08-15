@@ -11,8 +11,8 @@ execution:
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
-  id: BB-UX-GATE-001
-  name: ux_interaction_system_v0_1
+  id: BB-ART-GATE-001
+  name: visual_identity_procedural_art_system_v0_1
   status: not_started
 completed_gates:
   - initial_concept
@@ -22,19 +22,17 @@ completed_gates:
   - battle_system_v0_1
   - run_progression_system_v0_1
   - content_system_initial_set_v0_1
+  - ux_interaction_system_v0_1
 core:
   genre: [tactical_board_game, roguelite, strategy]
   mutation_domains: [piece, board, rule]
   deterministic_resolution: true
   run_seeded: true
-content_baseline:
-  piece_mutations: 20
-  rule_mutations: 8
-  board_features: 8
-  encounter_templates: 10
-  events: 6
-  elites: 6
-  bosses: 3
+  perfect_information_v0_1: true
+platform_scope:
+  launch_baseline: desktop
+  touch_compatible_architecture: true
+  mobile_release_committed: false
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
@@ -44,15 +42,18 @@ canonical_entrypoints:
   battle_system: docs/game/BATTLE-SYSTEM.md
   run_system: docs/game/RUN-SYSTEM.md
   content_system: docs/content/CONTENT-SYSTEM.md
+  ux_system: docs/ux/UX-SYSTEM.md
+  interaction_model: docs/ux/INTERACTION-MODEL.md
+  accessibility: docs/ux/ACCESSIBILITY.md
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - ux_information_architecture
-  - battle_interaction_model
-  - mutation_reward_replacement_ux
-  - route_map_interaction
-  - event_boss_presentation
-  - game_state_readability
-  - desktop_touch_input_abstraction
-  - accessibility_baseline
-  - feedback_animation_semantics
+  - visual_identity
+  - board_piece_visual_grammar
+  - ownership_core_semantics
+  - board_feature_visual_semantics
+  - icon_system
+  - procedural_vfx
+  - ui_visual_language
+  - asset_generation_policy
+  - accessible_palette_contract
