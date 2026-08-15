@@ -16,10 +16,13 @@ Agents must not resolve open questions implicitly.
 | BB-OQ-037 | Full deterministic outcome preview or direct consequences? | RESOLVED: full legality/direct consequences; final reaction-chain state hidden by default |
 | BB-OQ-038 | Resolution feed always visible? | RESOLVED: latest concise summary visible; full history expandable |
 | BB-OQ-039 | Is mobile a launch target? | RESOLVED baseline: desktop launch target; touch-compatible architecture required; mobile release uncommitted |
-| BB-OQ-040 | What final visual art direction defines BreakBoard's identity? | OPEN / Art gate |
-| BB-OQ-041 | Which visual properties encode player/enemy ownership and Core status while remaining accessible? | OPEN / Art gate |
-| BB-OQ-042 | What exact icon grammar represents 20 Piece Mutations, 8 Rules, and 8 Board Features coherently? | OPEN / Art gate |
-| BB-OQ-043 | Which visual assets may be AI-generated vs procedural/code-generated vs manually curated? | OPEN / Art gate |
+| BB-OQ-040 | What final visual art direction defines BreakBoard's identity? | RESOLVED v0.1: Broken Geometry |
+| BB-OQ-041 | Which visual properties encode player/enemy ownership and Core status while remaining accessible? | RESOLVED: redundant color+pattern/orientation ownership; Core Halo independent of archetype |
+| BB-OQ-042 | What icon grammar represents Piece Mutations, Rules, and Board Features coherently? | RESOLVED baseline: circular Piece, hexagonal Rule, diamond/square Board containers + stable semantic glyphs |
+| BB-OQ-043 | Which visual assets may be AI-generated vs procedural/code-generated vs manually curated? | RESOLVED by Asset Policy: gameplay semantics procedural/vector-first; AI decorative/non-critical; curation required |
+| BB-OQ-044 | Exact palette/font/material/shader values? | OPEN / visual tokens + technology/polish |
+| BB-OQ-045 | What audio event vocabulary and adaptive music model are required? | OPEN / Audio gate |
+| BB-OQ-046 | Are haptics required at launch or merely supported by abstraction? | OPEN / Audio gate/platform scope |
 
 ## Resolved baseline
-Canonical mechanics are deterministic and repository-defined. Mutation, Battle, Run, Content, and UX v0.1 design gates are closed. UX uses perfect information, explicit legality reasons, direct-consequence preview, expandable resolution history, desktop-first launch scope, touch-compatible input abstraction, and accessibility requirements that prohibit color-only critical state.
+Canonical mechanics are deterministic and repository-defined. Mutation, Battle, Run, Content, UX, and Art v0.1 design gates are closed. Visual identity is Broken Geometry: silhouette-first geometric pieces, layered board state, Core Halo independent of archetype, accessible redundant state encodings, procedural VFX, vector/reusable gameplay glyphs, and AI-generated art limited to decorative/non-semantic uses.

@@ -30,8 +30,14 @@ This is the canonical index, not a duplicate of every specification.
 - [Interaction Model](ux/INTERACTION-MODEL.md)
 - [Accessibility Baseline](ux/ACCESSIBILITY.md)
 
+## Art
+- [Visual Identity / Art Direction v0.1](art/ART-DIRECTION.md) — specified
+- [Visual Grammar](art/VISUAL-GRAMMAR.md)
+- [Asset Policy](art/ASSET-POLICY.md)
+- [Procedural VFX System](art/VFX-SYSTEM.md)
+
 ## Current design gate
-- Visual Identity & Procedural Art System v0.1 — not yet specified
+- Audio, Music & Haptic Feedback v0.1 — not yet specified
 
 ## Control
 - [Current State](CURRENT-STATE.md)
@@ -42,4 +48,4 @@ This is the canonical index, not a duplicate of every specification.
 - [`specs/project.yaml`](../specs/project.yaml)
 
 ## Deferred
-Technology selection, concrete architecture, renderer, persistence format, platform SDKs, multiplayer, backend, production tests, and source code remain deferred until prerequisite design gates are complete.
+Technology selection, concrete architecture, renderer/audio middleware, persistence format, platform SDKs, multiplayer, backend, production tests, and source code remain deferred until prerequisite design gates are complete.

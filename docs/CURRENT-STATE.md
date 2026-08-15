@@ -17,22 +17,23 @@ completed:
   - run_progression_system_v0_1
   - content_system_initial_set_v0_1
   - ux_interaction_system_v0_1
+  - visual_identity_procedural_art_system_v0_1
 current_gate:
-  id: BB-ART-GATE-001
-  name: Visual Identity & Procedural Art System v0.1
+  id: BB-AUDIO-GATE-001
+  name: Audio, Music & Haptic Feedback v0.1
   status: NOT_STARTED
 next:
-  - define visual identity principles and reference constraints
-  - define board and piece visual grammar
-  - define Core and ownership visual semantics
-  - define Board Feature visual semantics
-  - define mutation/rule icon system
-  - define procedural VFX and animation language
-  - define UI visual language without changing UX contracts
-  - define asset-generation policy and AI asset boundaries
-  - define palette/contrast requirements compatible with accessibility
-  - validate launch content can be represented without bespoke high-volume assets
+  - define audio principles and semantic event taxonomy
+  - define battle SFX vocabulary
+  - define mutation/rule/board-feature audio feedback
+  - define Collapse and Boss audio semantics
+  - define music-state/adaptive layering requirements
+  - define UI audio feedback
+  - define accessibility and audio-independent gameplay requirements
+  - define haptic intent abstraction without platform commitment
+  - define procedural/generated/audio-asset policy
+  - validate all critical state remains understandable with audio disabled
 implementation_unlock: false
 ```
 
-UX & Interaction System v0.1 is closed. The next allowed work is planning Visual Identity & Procedural Art System v0.1. Selecting an engine or writing production implementation remains out of scope.
+Visual Identity & Procedural Art System v0.1 is closed. The next allowed work is planning Audio, Music & Haptic Feedback v0.1. Selecting an engine or writing production implementation remains out of scope.

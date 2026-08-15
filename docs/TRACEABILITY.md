@@ -13,8 +13,9 @@ Planning state. Contract/test/implementation bindings remain absent until those 
 | BB-RUN-001..028 | Run System v0.1 | future Run/Profile/Generation contracts | seeded DAG/reward/progression tests | — | DESIGN SPECIFIED |
 | BB-CONT-* | Content System + catalogs | future content schemas | schema + satisfiability + combinatorial validation | — | DESIGN SPECIFIED |
 | BB-UX-001..027 | UX System v0.1 | future presentation/input contracts | interaction-state, legibility, accessibility, usability tests | — | DESIGN SPECIFIED |
+| BB-ART-001..011 | Art Direction + Visual Grammar + Asset/VFX policies | future visual-token/presentation contracts | silhouette, grayscale, contrast, screenshot, cosmetic-integrity audits | — | DESIGN SPECIFIED |
 | BB-RNG-001..003 | Canonical Rules + Run System | future RNG contracts | reproducibility tests | — | DESIGN SPECIFIED |
 | BB-META-001..003 | Canonical Rules + Run System | future Profile contracts | progression-integrity tests | — | DESIGN SPECIFIED |
-| BB-ART (future) | Art gate | future visual token/assets contracts | visual/readability audits | — | CURRENT NEXT GATE |
+| BB-AUDIO (future) | Audio gate | future audio/haptic presentation contracts | semantic/audio-off/accessibility audits | — | CURRENT NEXT GATE |
 
 Before implementation unlock, every P0 implementation requirement must map to an authoritative specification, contract, and planned verification. After implementation begins, it must additionally map to code and passing verification.
