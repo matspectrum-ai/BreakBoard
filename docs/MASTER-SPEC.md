@@ -42,8 +42,15 @@ This is the canonical index, not a duplicate of every specification.
 - [Haptic Feedback](audio/HAPTICS.md)
 - [Audio Asset Policy](audio/ASSET-POLICY.md)
 
-## Current planning gate
-- Formal Domain Contracts & Verification Plan v0.1 — not yet specified
+## Formal contracts — current gate
+- [Domain Model v0.1](contracts/DOMAIN-MODEL.md) — draft
+- [State Contracts v0.1](contracts/STATE-CONTRACTS.md) — draft
+- [Resolution Contract v0.1](contracts/RESOLUTION-CONTRACT.md) — draft
+- [RNG & Persistence Contract v0.1](contracts/RNG-PERSISTENCE-CONTRACT.md) — draft
+- [Content Contracts v0.1](contracts/CONTENT-CONTRACTS.md) — draft
+- [RED-First Verification Plan v0.1](contracts/VERIFICATION-PLAN.md) — draft
+
+`BB-CONTRACT-GATE-001` remains IN_PROGRESS until Rule Query composition, bounded-resolution cycle/budget semantics, interruption-recovery classification, and P0 traceability audit are complete.
 
 ## Control
 - [Current State](CURRENT-STATE.md)
@@ -54,4 +61,4 @@ This is the canonical index, not a duplicate of every specification.
 - [`specs/project.yaml`](../specs/project.yaml)
 
 ## Deferred
-Technology selection, concrete architecture, renderer/audio middleware, persistence implementation, platform SDKs, multiplayer, backend, production tests/code, and source implementation remain deferred until prerequisite contract/planning gates are complete.
+Technology selection, concrete architecture, engine/framework, renderer/audio middleware, persistence implementation, platform SDKs, multiplayer, backend, production code, and implementation test harness remain deferred until prerequisite contract/planning gates are complete.
