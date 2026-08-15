@@ -22,19 +22,28 @@ completed:
 current_gate:
   id: BB-CONTRACT-GATE-001
   name: Formal Domain Contracts & Verification Plan v0.1
-  status: NOT_STARTED
+  status: IN_PROGRESS
+contract_progress:
+  - canonical_schema_notation_json_schema_2020_12
+  - domain_model_draft_v0_1
+  - state_contracts_draft_v0_1
+  - resolution_contract_draft_v0_1
+  - rng_persistence_contract_draft_v0_1
+  - content_contracts_draft_v0_1
+  - red_first_verification_plan_draft_v0_1
+blocking_micro_gates:
+  - finalize_rule_query_composition_algebra
+  - finalize_resolution_budget_and_cycle_signature
+  - classify_mid_battle_interruption_recovery_as_p0_or_p1
 next:
-  - formalize canonical domain entities and value objects
-  - formalize GameState, BattleState, RunState, and ProfileState schemas
-  - formalize Action, OperationGroup, Event, Reaction, Modifier, ScheduledEffect contracts
-  - formalize board/topology and piece identity contracts
-  - formalize deterministic RNG namespace contract
-  - formalize content-definition schemas and cross-reference validation
-  - formalize persistence/versioning boundaries
-  - map every P0 requirement to contract and planned verification
-  - define RED-first unit/property/scenario/contract tests
-  - define implementation-unlock criteria without selecting technology
+  - specify algebra for all v0_1 Rule Query hooks
+  - specify deterministic resolution budget accounting
+  - specify canonical cycle signature and rollback fixtures
+  - classify interruption recovery requirement
+  - complete P0 requirement-to-contract-to-test traceability audit
+  - run formal contract consistency review
+  - close BB-CONTRACT-GATE-001 only if no P0 semantic gap remains
 implementation_unlock: false
 ```
 
-Audio, Music & Haptic Feedback v0.1 is closed. The next allowed work is Formal Domain Contracts & Verification Plan v0.1. Selecting an engine/framework or writing production implementation remains out of scope.
+Formal contracts are being written and RED-first verification IDs now exist. Implementation and technology selection remain locked. The next allowed work is only the remaining Contract gate micro-passes listed above.
