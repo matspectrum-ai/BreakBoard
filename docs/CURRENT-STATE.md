@@ -22,28 +22,30 @@ completed:
 current_gate:
   id: BB-CONTRACT-GATE-001
   name: Formal Domain Contracts & Verification Plan v0.1
-  status: IN_PROGRESS
+  status: READY_TO_CLOSE
 contract_progress:
   - canonical_schema_notation_json_schema_2020_12
-  - domain_model_draft_v0_1
-  - state_contracts_draft_v0_1
-  - resolution_contract_draft_v0_1
-  - rng_persistence_contract_draft_v0_1
-  - content_contracts_draft_v0_1
-  - red_first_verification_plan_draft_v0_1
-blocking_micro_gates:
-  - finalize_rule_query_composition_algebra
-  - finalize_resolution_budget_and_cycle_signature
-  - classify_mid_battle_interruption_recovery_as_p0_or_p1
-next:
-  - specify algebra for all v0_1 Rule Query hooks
-  - specify deterministic resolution budget accounting
-  - specify canonical cycle signature and rollback fixtures
-  - classify interruption recovery requirement
-  - complete P0 requirement-to-contract-to-test traceability audit
-  - run formal contract consistency review
-  - close BB-CONTRACT-GATE-001 only if no P0 semantic gap remains
+  - domain_model_v0_1
+  - state_contracts_v0_1
+  - resolution_contract_v0_1
+  - rule_query_composition_algebra_v0_1
+  - bounded_resolution_cycle_detection_v0_1
+  - rng_persistence_contract_v0_1
+  - content_contracts_v0_1
+  - machine_readable_state_resolution_content_schemas_v0_1
+  - red_first_verification_plan_v0_1
+  - p0_traceability_audit_pass_candidate
+resolved_contract_micro_gates:
+  - rule_query_composition_algebra
+  - resolution_budget_512_work_units
+  - canonical_cycle_projection_and_rollback
+  - mid_battle_interruption_classified_p1_for_implementation_unlock
+closure_work:
+  - promote contract draft/candidate headers to SPECIFIED
+  - mark P0 audit final PASS
+  - update control/index files to BB-ARCH-GATE-001
+  - perform final repository consistency check
 implementation_unlock: false
 ```
 
-Formal contracts are being written and RED-first verification IDs now exist. Implementation and technology selection remain locked. The next allowed work is only the remaining Contract gate micro-passes listed above.
+No remaining P0 game-semantic gap was found by the Contract audit. BB-CONTRACT-GATE-001 is ready for formal document promotion/closure. Production implementation and technology selection remain locked until closure and the subsequent Architecture & Technology Selection gate.
