@@ -13,7 +13,7 @@ execution:
 current_gate:
   id: BB-CONTRACT-GATE-001
   name: formal_domain_contracts_verification_plan_v0_1
-  status: in_progress
+  status: ready_to_close
 completed_gates:
   - initial_concept
   - paper_prototype_v0_1
@@ -27,18 +27,21 @@ completed_gates:
   - audio_music_haptics_system_v0_1
 contract_progress:
   schema_notation: json_schema_2020_12
-  domain_model: draft_v0_1
-  state_contracts: draft_v0_1
-  resolution_contract: draft_v0_1
-  rng_persistence_contract: draft_v0_1
-  content_contracts: draft_v0_1
-  verification_plan: draft_v0_1
-blocking_contract_items:
-  - rule_query_composition_algebra
-  - resolution_budget_accounting
-  - cycle_signature
-  - mid_battle_interruption_classification
-  - p0_traceability_audit
+  domain_model: specified_candidate
+  state_contracts: specified_candidate
+  resolution_contract: specified_candidate
+  rule_query_algebra: specified_candidate
+  bounded_resolution: specified_candidate
+  rng_persistence_contract: specified_candidate
+  content_contracts: specified_candidate
+  machine_readable_schemas: [state, resolution, content]
+  verification_plan: specified_candidate
+  p0_traceability_audit: pass_candidate
+contract_decisions:
+  resolution_budget_work_units: 512
+  cycle_projection: canonical_json_sha256_plus_byte_equality
+  mid_battle_recovery_priority: p1_before_release_readiness
+  rng_algorithm_selection: architecture_gate
 core:
   genre: [tactical_board_game, roguelite, strategy]
   mutation_domains: [piece, board, rule]
@@ -49,24 +52,6 @@ platform_scope:
   launch_baseline: desktop
   touch_compatible_architecture: true
   mobile_release_committed: false
-visual:
-  direction: broken_geometry
-  procedural_gameplay_presentation: preferred
-  ai_generated_gameplay_semantics: false
-audio:
-  presentation_only: true
-  gameplay_audio_required: false
-  haptics_required: false
-  semantic_intents: true
-  adaptive_music: true
-contracts:
-  canonical_schema_notation: json_schema_2020_12
-  generated_language_types_are_authoritative: false
-  action_legality_is_pure: true
-  operation_group_atomic: true
-  events_immutable_after_commit: true
-  forced_removal_authority: kernel_lifecycle_only
-  presentation_state_authoritative: false
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
@@ -76,28 +61,22 @@ canonical_entrypoints:
   battle_system: docs/game/BATTLE-SYSTEM.md
   run_system: docs/game/RUN-SYSTEM.md
   content_system: docs/content/CONTENT-SYSTEM.md
-  ux_system: docs/ux/UX-SYSTEM.md
-  interaction_model: docs/ux/INTERACTION-MODEL.md
-  accessibility: docs/ux/ACCESSIBILITY.md
-  art_direction: docs/art/ART-DIRECTION.md
-  visual_grammar: docs/art/VISUAL-GRAMMAR.md
-  art_asset_policy: docs/art/ASSET-POLICY.md
-  vfx_system: docs/art/VFX-SYSTEM.md
-  audio_system: docs/audio/AUDIO-SYSTEM.md
-  music_system: docs/audio/MUSIC-SYSTEM.md
-  haptics: docs/audio/HAPTICS.md
-  audio_asset_policy: docs/audio/ASSET-POLICY.md
   domain_model: docs/contracts/DOMAIN-MODEL.md
   state_contracts: docs/contracts/STATE-CONTRACTS.md
   resolution_contract: docs/contracts/RESOLUTION-CONTRACT.md
+  rule_query_algebra: docs/contracts/RULE-QUERY-ALGEBRA.md
+  bounded_resolution: docs/contracts/BOUNDED-RESOLUTION.md
   rng_persistence_contract: docs/contracts/RNG-PERSISTENCE-CONTRACT.md
   content_contracts: docs/contracts/CONTENT-CONTRACTS.md
   verification_plan: docs/contracts/VERIFICATION-PLAN.md
+  p0_traceability_audit: docs/contracts/P0-TRACEABILITY-AUDIT.md
+  state_schema: specs/contracts/state.schema.json
+  resolution_schema: specs/contracts/resolution.schema.json
+  content_schema: specs/contracts/content.schema.json
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - rule_query_composition_algebra
-  - resolution_budget_cycle_signature
-  - interruption_recovery_classification
-  - p0_requirement_traceability_audit
-  - contract_consistency_review
+  - promote_contract_headers_to_specified
+  - final_contract_consistency_check
+  - close_contract_gate
+  - open_architecture_technology_selection_gate
