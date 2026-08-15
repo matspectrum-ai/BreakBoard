@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:breakboard:schema:resolution:0.1",
+  "title": "BreakBoard Resolution Contracts v0.1",
+  "$defs": {
+    "Id": {"type": "string", "minLength": 1},
+    "ContentId": {"type": "string", "pattern": "^BB-[A-Z0-9-]+$"},
+    "Coordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["column_index", "row_index"],
+      "properties": {
+        "column_index": {"type": "integer", "minimum": 0},
+        "row_index": {"type": "integer", "minimum": 0}
+      }
+    },
+    "ActionIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_intent_id", "kind", "side_id"],
+      "properties": {
+        "action_intent_id": {"$ref": "#/$defs/Id"},
+        "kind": {"enum": ["MOVE", "CAPTURE", "ABILITY", "PASS"]},
+        "side_id": {"$ref": "#/$defs/Id"},
+        "actor_piece_id": {"$ref": "#/$defs/Id"},
+        "source": {"$ref": "#/$defs/Coordinate"},
+        "destination": {"$ref": "#/$defs/Coordinate"},
+        "target_piece_id": {"$ref": "#/$defs/Id"},
+        "ability_content_id": {"$ref": "#/$defs/ContentId"},
+        "parameters": {"type": "object"}
+      }
+    },
+    "Operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_id", "kind", "source_ref", "payload"],
+      "properties": {
+        "operation_id": {"$ref": "#/$defs/Id"},
+        "kind": {
+          "enum": ["MovePiece", "RemovePiece", "SpawnPiece", "TransformPiece", "AddPieceMutation", "RemovePieceMutation", "ModifyTile", "DestroyTile", "RestoreTile", "CreateLink", "AddRuleMutation", "RemoveRuleMutation", "GrantAction", "CancelAction", "ScheduleEffect"]
+        },
+        "source_ref": {"$ref": "#/$defs/Id"},
+        "cause": {"type": "string"},
+        "interceptable": {"type": "boolean"},
+        "removal_mode": {"enum": ["ORDINARY", "FORCED"]},
+        "payload": {"type": "object"}
+      }
+    },
+    "OperationGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_group_id", "source_ref", "operations"],
+      "properties": {
+        "operation_group_id": {"$ref": "#/$defs/Id"},
+        "source_ref": {"$ref": "#/$defs/Id"},
+        "cause": {"type": "string"},
+        "operations": {"type": "array", "items": {"$ref": "#/$defs/Operation"}, "minItems": 1}
+      }
+    },
+    "Event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "event_sequence", "kind", "operation_group_id", "payload"],
+      "properties": {
+        "event_id": {"$ref": "#/$defs/Id"},
+        "event_sequence": {"type": "integer", "minimum": 0},
+        "kind": {"enum": ["BattleStarted", "BattleEnded", "TurnStarted", "TurnEnded", "ActionStarted", "ActionResolved", "PieceMoved", "PieceCaptured", "PieceDied", "TileEntered", "TileLeft", "TileModified", "TileDestroyed", "MutationAdded", "MutationRemoved"]},
+        "source_ref": {"$ref": "#/$defs/Id"},
+        "cause": {"type": "string"},
+        "operation_group_id": {"$ref": "#/$defs/Id"},
+        "payload": {"type": "object"}
+      }
+    },
+    "Reaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trigger", "conditions", "selector", "effects", "priority"],
+      "properties": {
+        "trigger": {"type": "string"},
+        "conditions": {"type": "array", "items": {"type": "object"}},
+        "selector": {"type": "object"},
+        "effects": {"type": "array", "items": {"type": "object"}, "minItems": 1},
+        "priority": {"type": "integer", "minimum": -1000, "maximum": 1000}
+      }
+    },
+    "Modifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hook", "contribution_type", "payload", "priority"],
+      "properties": {
+        "hook": {"enum": ["MovementPattern", "MovementRange", "MovementBlocking", "DestinationValidity", "CapturePattern", "CaptureValidity", "AvailableActions", "PrimaryActionCount", "TileTraversability", "TileOccupancy", "CoreClassification"]},
+        "contribution_type": {"type": "string"},
+        "payload": {"type": "object"},
+        "priority": {"type": "integer", "minimum": -1000, "maximum": 1000}
+      }
+    },
+    "ScheduledEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheduled_effect_id", "source_ref", "due", "effect", "invalid_target_policy"],
+      "properties": {
+        "scheduled_effect_id": {"$ref": "#/$defs/Id"},
+        "source_ref": {"$ref": "#/$defs/Id"},
+        "due": {"type": "object"},
+        "effect": {"type": "object"},
+        "snapshot": {"type": "object"},
+        "invalid_target_policy": {"enum": ["SKIP", "FAIL_RESOLUTION"]}
+      }
+    }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/ActionIntent"},
+    {"$ref": "#/$defs/OperationGroup"},
+    {"$ref": "#/$defs/Event"},
+    {"$ref": "#/$defs/Reaction"},
+    {"$ref": "#/$defs/Modifier"},
+    {"$ref": "#/$defs/ScheduledEffect"}
+  ]
+}
