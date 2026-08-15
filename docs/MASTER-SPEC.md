@@ -36,8 +36,14 @@ This is the canonical index, not a duplicate of every specification.
 - [Asset Policy](art/ASSET-POLICY.md)
 - [Procedural VFX System](art/VFX-SYSTEM.md)
 
-## Current design gate
-- Audio, Music & Haptic Feedback v0.1 — not yet specified
+## Audio
+- [Audio System v0.1](audio/AUDIO-SYSTEM.md) — specified
+- [Music System](audio/MUSIC-SYSTEM.md)
+- [Haptic Feedback](audio/HAPTICS.md)
+- [Audio Asset Policy](audio/ASSET-POLICY.md)
+
+## Current planning gate
+- Formal Domain Contracts & Verification Plan v0.1 — not yet specified
 
 ## Control
 - [Current State](CURRENT-STATE.md)
@@ -48,4 +54,4 @@ This is the canonical index, not a duplicate of every specification.
 - [`specs/project.yaml`](../specs/project.yaml)
 
 ## Deferred
-Technology selection, concrete architecture, renderer/audio middleware, persistence format, platform SDKs, multiplayer, backend, production tests, and source code remain deferred until prerequisite design gates are complete.
+Technology selection, concrete architecture, renderer/audio middleware, persistence implementation, platform SDKs, multiplayer, backend, production tests/code, and source implementation remain deferred until prerequisite contract/planning gates are complete.

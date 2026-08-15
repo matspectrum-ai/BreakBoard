@@ -18,22 +18,23 @@ completed:
   - content_system_initial_set_v0_1
   - ux_interaction_system_v0_1
   - visual_identity_procedural_art_system_v0_1
+  - audio_music_haptics_system_v0_1
 current_gate:
-  id: BB-AUDIO-GATE-001
-  name: Audio, Music & Haptic Feedback v0.1
+  id: BB-CONTRACT-GATE-001
+  name: Formal Domain Contracts & Verification Plan v0.1
   status: NOT_STARTED
 next:
-  - define audio principles and semantic event taxonomy
-  - define battle SFX vocabulary
-  - define mutation/rule/board-feature audio feedback
-  - define Collapse and Boss audio semantics
-  - define music-state/adaptive layering requirements
-  - define UI audio feedback
-  - define accessibility and audio-independent gameplay requirements
-  - define haptic intent abstraction without platform commitment
-  - define procedural/generated/audio-asset policy
-  - validate all critical state remains understandable with audio disabled
+  - formalize canonical domain entities and value objects
+  - formalize GameState, BattleState, RunState, and ProfileState schemas
+  - formalize Action, OperationGroup, Event, Reaction, Modifier, ScheduledEffect contracts
+  - formalize board/topology and piece identity contracts
+  - formalize deterministic RNG namespace contract
+  - formalize content-definition schemas and cross-reference validation
+  - formalize persistence/versioning boundaries
+  - map every P0 requirement to contract and planned verification
+  - define RED-first unit/property/scenario/contract tests
+  - define implementation-unlock criteria without selecting technology
 implementation_unlock: false
 ```
 
-Visual Identity & Procedural Art System v0.1 is closed. The next allowed work is planning Audio, Music & Haptic Feedback v0.1. Selecting an engine or writing production implementation remains out of scope.
+Audio, Music & Haptic Feedback v0.1 is closed. The next allowed work is Formal Domain Contracts & Verification Plan v0.1. Selecting an engine/framework or writing production implementation remains out of scope.

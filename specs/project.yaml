@@ -11,8 +11,8 @@ execution:
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
-  id: BB-AUDIO-GATE-001
-  name: audio_music_haptic_feedback_v0_1
+  id: BB-CONTRACT-GATE-001
+  name: formal_domain_contracts_verification_plan_v0_1
   status: not_started
 completed_gates:
   - initial_concept
@@ -24,6 +24,7 @@ completed_gates:
   - content_system_initial_set_v0_1
   - ux_interaction_system_v0_1
   - visual_identity_procedural_art_system_v0_1
+  - audio_music_haptics_system_v0_1
 core:
   genre: [tactical_board_game, roguelite, strategy]
   mutation_domains: [piece, board, rule]
@@ -38,6 +39,12 @@ visual:
   direction: broken_geometry
   procedural_gameplay_presentation: preferred
   ai_generated_gameplay_semantics: false
+audio:
+  presentation_only: true
+  gameplay_audio_required: false
+  haptics_required: false
+  semantic_intents: true
+  adaptive_music: true
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
@@ -52,18 +59,22 @@ canonical_entrypoints:
   accessibility: docs/ux/ACCESSIBILITY.md
   art_direction: docs/art/ART-DIRECTION.md
   visual_grammar: docs/art/VISUAL-GRAMMAR.md
-  asset_policy: docs/art/ASSET-POLICY.md
+  art_asset_policy: docs/art/ASSET-POLICY.md
   vfx_system: docs/art/VFX-SYSTEM.md
+  audio_system: docs/audio/AUDIO-SYSTEM.md
+  music_system: docs/audio/MUSIC-SYSTEM.md
+  haptics: docs/audio/HAPTICS.md
+  audio_asset_policy: docs/audio/ASSET-POLICY.md
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - audio_principles
-  - semantic_audio_events
-  - battle_sfx
-  - mutation_rule_board_audio
-  - boss_collapse_audio
-  - adaptive_music
-  - ui_audio
-  - audio_accessibility
-  - haptic_abstraction
-  - audio_asset_policy
+  - domain_contracts
+  - state_schemas
+  - action_operation_event_contracts
+  - board_piece_contracts
+  - rng_namespace_contract
+  - content_schemas
+  - persistence_versioning_contracts
+  - requirement_test_traceability
+  - red_first_verification_plan
+  - implementation_unlock_criteria
