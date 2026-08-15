@@ -1,6 +1,6 @@
 # Rule Query Composition Algebra v0.1
 
-Status: **SPECIFIED candidate — BB-CONTRACT-GATE-001**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## Objective
 Give every whitelisted Modifier hook a deterministic hook-specific composition algebra. Generic priority alone is not gameplay semantics.

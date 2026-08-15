@@ -42,7 +42,7 @@ This is the canonical index, not a duplicate of every specification.
 - [Haptic Feedback](audio/HAPTICS.md)
 - [Audio Asset Policy](audio/ASSET-POLICY.md)
 
-## Formal contracts — current gate READY_TO_CLOSE
+## Formal contracts — specified
 - [Domain Model v0.1](contracts/DOMAIN-MODEL.md)
 - [State Contracts v0.1](contracts/STATE-CONTRACTS.md)
 - [Resolution Contract v0.1](contracts/RESOLUTION-CONTRACT.md)
@@ -51,14 +51,15 @@ This is the canonical index, not a duplicate of every specification.
 - [RNG & Persistence Contract v0.1](contracts/RNG-PERSISTENCE-CONTRACT.md)
 - [Content Contracts v0.1](contracts/CONTENT-CONTRACTS.md)
 - [RED-First Verification Plan v0.1](contracts/VERIFICATION-PLAN.md)
-- [P0 Traceability Audit v0.1](contracts/P0-TRACEABILITY-AUDIT.md) — PASS candidate
+- [P0 Traceability Audit v0.1](contracts/P0-TRACEABILITY-AUDIT.md) — PASS
 
 Machine-readable contract schemas:
 - [`specs/contracts/state.schema.json`](../specs/contracts/state.schema.json)
 - [`specs/contracts/resolution.schema.json`](../specs/contracts/resolution.schema.json)
 - [`specs/contracts/content.schema.json`](../specs/contracts/content.schema.json)
 
-`BB-CONTRACT-GATE-001` has no remaining P0 game-semantic gap. Formal closure still requires promoting embedded draft/candidate headers and updating control state to the Architecture gate.
+## Current planning gate
+- **BB-ARCH-GATE-001 — Architecture & Technology Selection v0.1 — NOT_STARTED**
 
 ## Control
 - [Current State](CURRENT-STATE.md)
@@ -69,4 +70,4 @@ Machine-readable contract schemas:
 - [`specs/project.yaml`](../specs/project.yaml)
 
 ## Deferred
-Technology selection, concrete architecture, engine/framework, exact PRNG algorithm, renderer/audio middleware, persistence implementation, platform SDKs, multiplayer, backend, production code, and implementation test harness remain deferred until the Architecture & Technology Selection gate.
+Production implementation remains locked. The Architecture gate must select implementation architecture/technology, exact RNG algorithm and golden vectors, persistence strategy, concrete test harness, and deployment/build boundaries before any implementation unlock decision.

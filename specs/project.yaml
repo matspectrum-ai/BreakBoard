@@ -11,9 +11,9 @@ execution:
   tests_before_implementation: required
   unspecified_behavior: forbidden
 current_gate:
-  id: BB-CONTRACT-GATE-001
-  name: formal_domain_contracts_verification_plan_v0_1
-  status: ready_to_close
+  id: BB-ARCH-GATE-001
+  name: architecture_technology_selection_v0_1
+  status: not_started
 completed_gates:
   - initial_concept
   - paper_prototype_v0_1
@@ -25,19 +25,22 @@ completed_gates:
   - ux_interaction_system_v0_1
   - visual_identity_procedural_art_system_v0_1
   - audio_music_haptics_system_v0_1
-contract_progress:
+  - formal_domain_contracts_verification_plan_v0_1
+contracts:
   schema_notation: json_schema_2020_12
-  domain_model: specified_candidate
-  state_contracts: specified_candidate
-  resolution_contract: specified_candidate
-  rule_query_algebra: specified_candidate
-  bounded_resolution: specified_candidate
-  rng_persistence_contract: specified_candidate
-  content_contracts: specified_candidate
+  domain_model: specified
+  state_contracts: specified
+  resolution_contract: specified
+  rule_query_algebra: specified
+  bounded_resolution: specified
+  rng_persistence_contract: specified
+  content_contracts: specified
   machine_readable_schemas: [state, resolution, content]
-  verification_plan: specified_candidate
-  p0_traceability_audit: pass_candidate
+  verification_plan: specified
+  p0_traceability_audit: pass
 contract_decisions:
+  reaction_priority_range: [-1000, 1000]
+  reaction_priority_default: 0
   resolution_budget_work_units: 512
   cycle_projection: canonical_json_sha256_plus_byte_equality
   mid_battle_recovery_priority: p1_before_release_readiness
@@ -76,7 +79,14 @@ canonical_entrypoints:
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - promote_contract_headers_to_specified
-  - final_contract_consistency_check
-  - close_contract_gate
-  - open_architecture_technology_selection_gate
+  - architecture_requirements
+  - engine_framework_language_evaluation
+  - rng_algorithm_and_golden_vectors
+  - module_dependency_boundaries
+  - content_loading_validation_pipeline
+  - persistence_adapter_atomic_save_strategy
+  - concrete_red_first_test_harness
+  - presentation_domain_event_bridge
+  - desktop_build_packaging_baseline
+  - architecture_adrs
+  - implementation_unlock_criteria

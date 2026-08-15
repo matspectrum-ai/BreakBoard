@@ -19,33 +19,23 @@ completed:
   - ux_interaction_system_v0_1
   - visual_identity_procedural_art_system_v0_1
   - audio_music_haptics_system_v0_1
+  - formal_domain_contracts_verification_plan_v0_1
 current_gate:
-  id: BB-CONTRACT-GATE-001
-  name: Formal Domain Contracts & Verification Plan v0.1
-  status: READY_TO_CLOSE
-contract_progress:
-  - canonical_schema_notation_json_schema_2020_12
-  - domain_model_v0_1
-  - state_contracts_v0_1
-  - resolution_contract_v0_1
-  - rule_query_composition_algebra_v0_1
-  - bounded_resolution_cycle_detection_v0_1
-  - rng_persistence_contract_v0_1
-  - content_contracts_v0_1
-  - machine_readable_state_resolution_content_schemas_v0_1
-  - red_first_verification_plan_v0_1
-  - p0_traceability_audit_pass_candidate
-resolved_contract_micro_gates:
-  - rule_query_composition_algebra
-  - resolution_budget_512_work_units
-  - canonical_cycle_projection_and_rollback
-  - mid_battle_interruption_classified_p1_for_implementation_unlock
-closure_work:
-  - promote contract draft/candidate headers to SPECIFIED
-  - mark P0 audit final PASS
-  - update control/index files to BB-ARCH-GATE-001
-  - perform final repository consistency check
+  id: BB-ARCH-GATE-001
+  name: Architecture & Technology Selection v0.1
+  status: NOT_STARTED
+next:
+  - derive architecture requirements from canonical contracts
+  - evaluate engine/framework and language options against deterministic-domain constraints
+  - select exact PRNG and namespace derivation algorithm and publish golden vectors
+  - define domain/module boundaries and dependency direction
+  - define content loading/schema validation pipeline
+  - define stable persistence adapter and atomic-save strategy
+  - define concrete RED-first test harness and property-testing strategy
+  - define presentation/domain event bridge for UX, VFX, audio and haptics
+  - define build/package/platform baseline for desktop-first launch
+  - record architecture decisions as ADRs and evaluate implementation-unlock criteria
 implementation_unlock: false
 ```
 
-No remaining P0 game-semantic gap was found by the Contract audit. BB-CONTRACT-GATE-001 is ready for formal document promotion/closure. Production implementation and technology selection remain locked until closure and the subsequent Architecture & Technology Selection gate.
+BB-CONTRACT-GATE-001 is closed with P0 traceability PASS. Production implementation remains locked. The only allowed next phase is Architecture & Technology Selection v0.1; technology has not yet been selected.

@@ -1,6 +1,6 @@
 # Bounded Resolution & Cycle Detection v0.1
 
-Status: **SPECIFIED candidate — BB-CONTRACT-GATE-001**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## Objective
 Make BB-KRN-003 / BB-MSYS-019 executable and deterministic: every action-resolution boundary either reaches a stable state or faults without retaining a partially resolved prefix.

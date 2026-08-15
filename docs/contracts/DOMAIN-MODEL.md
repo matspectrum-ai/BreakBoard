@@ -1,6 +1,6 @@
 # Formal Domain Model v0.1
 
-Status: **DRAFT — BB-CONTRACT-GATE-001 IN PROGRESS**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## Objective
 Define technology-neutral domain identities, value objects, aggregates, ownership boundaries, and invariants before implementation. These contracts refine the canonical design; they do not select a programming language, engine, framework, database, or serialization library.
@@ -95,5 +95,5 @@ Schema-valid state and gameplay-nonterminal state are separate predicates. A Gam
 ## BB-CTR-014 — Content references
 Runtime state references content by stable `ContentId` plus the enclosing `content_version`/ruleset identity. Runtime saves never embed executable content behavior.
 
-## Deferred within this gate
-Concrete ID encoding, numeric capacities/balance values, exact Rule Query composition algebra, exact resolution budget/cycle signature, exact RNG algorithm, and mid-battle interruption recovery remain unresolved until their designated contract micro-pass.
+## Deferred beyond this gate
+Concrete ID encoding, numeric capacities/balance values, the exact PRNG/namespace derivation algorithm, and final mid-battle recovery policy remain assigned to later gates without changing the domain boundaries above.

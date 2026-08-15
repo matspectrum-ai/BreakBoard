@@ -1,6 +1,6 @@
 # RNG & Persistence Contract v0.1
 
-Status: **SPECIFIED candidate — BB-CONTRACT-GATE-001**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## BB-RNGC-001 — No ambient randomness
 Gameplay and procedural generation may obtain randomness only from an explicit RNG context. Process-global random APIs, wall-clock time, object hash iteration, platform entropy, and presentation randomness are forbidden as gameplay authority.

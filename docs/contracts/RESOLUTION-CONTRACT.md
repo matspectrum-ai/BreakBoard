@@ -1,6 +1,6 @@
 # Resolution Contract v0.1
 
-Status: **DRAFT — BB-CONTRACT-GATE-001 IN PROGRESS**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## BB-RSL-001 — Action intent
 Canonical primary Action kinds are `MOVE`, `CAPTURE`, `ABILITY`, and `PASS`.
@@ -81,12 +81,12 @@ Eligible Reactions sort by:
 4. stable mutation ContentId;
 5. stable instance ID only as final tie-break.
 
-Exact numeric priority ranges remain a micro-gate item, but equal semantic input must produce equal total ordering.
+Reaction `priority` is a signed integer in `[-1000, 1000]`, default `0`. Content/schema validation rejects values outside this range. Equal semantic input must produce equal total ordering.
 
 ## BB-RSL-011 — Modifier contract
 A Modifier contributes only to one whitelisted Rule Query hook. It declares hook, contribution phase/type, value payload, source, and deterministic ordering metadata. It cannot mutate GameState.
 
-The exact algebra for each v0.1 Rule Query remains the principal unresolved item before this contract gate closes.
+The complete v0.1 hook-specific algebra is authoritative in `RULE-QUERY-ALGEBRA.md`; generic priority is never a substitute for that algebra.
 
 ## BB-RSL-012 — ScheduledEffect
 ScheduledEffect is serializable state with stable ID, source/cause, due lifecycle point, deterministic offset/counter, Effect payload, optional explicit snapshot, target selector/reference strategy, and invalid-target policy `SKIP|FAIL_RESOLUTION`.
@@ -106,14 +106,9 @@ Input and victory checkpoints occur only at stable states.
 A player Action plus all synchronously caused Reaction/Operation chains up to the next stable state forms one action-resolution boundary for rollback/fault purposes. If bounded-resolution protection detects a cycle/overflow inside that boundary, the Battle restores the previous stable state and enters deterministic resolution-fault handling; it does not keep a partially resolved prefix.
 
 ## BB-RSL-015 — Fault codes
-Resolution failures return stable semantic reason codes rather than presentation copy. Baseline classes include `ILLEGAL_ACTION`, `INVALID_OPERATION`, `INTERCEPTION_INVALID_REPLACEMENT`, `RESOLUTION_BUDGET_EXCEEDED`, `RESOLUTION_CYCLE_DETECTED`, `INVALID_TARGET_FAIL_POLICY`, and `STATE_INVARIANT_VIOLATION`.
+Resolution failures return stable semantic reason codes rather than presentation copy. Baseline classes include `ILLEGAL_ACTION`, `INVALID_OPERATION`, `INTERCEPTION_INVALID_REPLACEMENT`, `RESOLUTION_BUDGET_EXCEEDED`, `RESOLUTION_CYCLE_DETECTED`, `INVALID_TARGET_FAIL_POLICY`, `STATE_INVARIANT_VIOLATION`, and `RULE_QUERY_CONFLICT`.
 
 Concrete user-facing messages are presentation/localization data.
 
-## BB-RSL-016 — Pending closure items
-Before BB-CONTRACT-GATE-001 closes, specify:
-- hook-specific Rule Query algebra for all v0.1 hooks;
-- numeric/structural priority ranges if required;
-- resolution budget accounting unit and baseline minimum;
-- canonical cycle-signature inputs;
-- golden scenarios proving rollback to previous stable state.
+## BB-RSL-016 — Cross-contract closure
+Rule Query algebra is specified by `RULE-QUERY-ALGEBRA.md`. Resolution work-unit accounting, the 512-unit bound, canonical cycle projection/signature, rollback semantics, and golden verification obligations are specified by `BOUNDED-RESOLUTION.md` and `VERIFICATION-PLAN.md`.

@@ -1,6 +1,6 @@
 # Content Contracts v0.1
 
-Status: **DRAFT — BB-CONTRACT-GATE-001 IN PROGRESS**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## BB-CC-001 — Canonical content document
 Every content definition validates against a JSON Schema selected by `kind`. Shared envelope fields:

@@ -1,6 +1,6 @@
 # RED-First Verification Plan v0.1
 
-Status: **DRAFT — BB-CONTRACT-GATE-001 IN PROGRESS**
+Status: **SPECIFIED — BB-CONTRACT-GATE-001 CLOSED**
 
 ## Objective
 Define tests before implementation. Test identifiers and expected behavior are contract artifacts; implementation technology is intentionally absent.
@@ -73,14 +73,13 @@ Golden scenario fixtures must include at least:
 - Split + Explosive deterministic reaction ordering.
 
 ## BB-VRF-009 — Resolution bounds
-Before gate closure define and test:
-- `RSL-BOUND-001` finite chain under budget reaches stable state;
-- `RSL-BOUND-002` known cycle triggers cycle fault;
-- `RSL-BOUND-003` budget overflow restores exact previous stable snapshot;
-- `RSL-BOUND-004` rollback restores RNG cursors/charges/action allowance as if failed resolution never committed;
-- `RSL-BOUND-005` same cyclic input yields same fault/signature.
-
-These tests are currently specified but blocked on the cycle/budget micro-contract.
+- `RSL-BOUND-001`: finite chain under 512 work units reaches stable state;
+- `RSL-BOUND-002`: repeated canonical cycle projection triggers `RESOLUTION_CYCLE_DETECTED`;
+- `RSL-BOUND-003`: work unit 513 is not executed and produces `RESOLUTION_BUDGET_EXCEEDED`;
+- `RSL-BOUND-004`: rollback restores GameState, RNG cursors, charges, action allowance, ScheduledEffects and event counter exactly;
+- `RSL-BOUND-005`: same cyclic input yields same canonical projection/signature and fault class;
+- `RSL-BOUND-006`: presentation/audio/settings changes do not alter cycle projection;
+- `RSL-BOUND-007`: gameplay-relevant RNG cursor changes alter the projection.
 
 ## BB-VRF-010 — Run/RNG
 - `RUN-RNG-001`: same complete GenerationIdentity => same region graph;
@@ -125,14 +124,21 @@ Metamorphic tests must verify that semantically irrelevant representation change
 ## BB-VRF-015 — Traceability requirement
 Every P0 contract requirement must map to at least one named verification ID before the contract gate closes. Every production implementation change after unlock must identify the contract/test IDs it satisfies or modifies.
 
-## BB-VRF-016 — Implementation unlock criteria
-This gate alone does not unlock implementation. To complete BB-CONTRACT-GATE-001:
-- all P0 domain/state/content contracts are specified;
-- Rule Query composition algebra is complete;
-- resolution budget/cycle signature is complete;
-- all P0 requirements have named RED-first verification cases;
-- no unresolved P0 semantic question remains;
-- schema/reference validation strategy is explicit;
-- persistence interruption question is classified P0 or explicitly deferred P1 with product impact recorded.
+## BB-VRF-016 — Contract-gate completion and implementation lock
+BB-CONTRACT-GATE-001 is complete when this document is `SPECIFIED`, the P0 audit is PASS, and control state advances to Architecture. Closing this gate does **not** unlock production implementation. Architecture & Technology Selection must bind implementation boundaries, exact RNG algorithm/derivation plus golden vectors, persistence adapter strategy, and concrete test-harness strategy before implementation unlock can be evaluated.
 
-After this gate closes, the next allowed phase is Architecture & Technology Selection. Production implementation remains locked until that subsequent gate establishes implementation boundaries and test-harness strategy.
+## BB-VRF-017 — Rule Query algebra RED set
+Named tests required before implementing each hook:
+- `RQ-PAT-001`: MovementPattern REPLACE then ADD/REMOVE follows authority and canonical dedupe;
+- `RQ-PAT-002`: CapturePattern uses the same set algebra independently of CaptureValidity;
+- `RQ-RANGE-001`: MovementRange SET/ADD/MIN/MAX composition is deterministic;
+- `RQ-RANGE-002`: contradictory MIN/MAX returns `RULE_QUERY_CONFLICT`;
+- `RQ-BLOCK-001`: Ghost/Riftwalker blocker-category contributions use authority ordering;
+- `RQ-DEST-001`: DestinationValidity deny-wins and cannot bypass Kernel validity;
+- `RQ-CAP-001`: Blood Price ALLOW loses to Sanctuary DENY;
+- `RQ-ACT-001`: AvailableActions removal wins over additions for matching descriptor;
+- `RQ-COUNT-001`: PrimaryActionCount SET+ADD+MIN+MAX is deterministic and floors at zero;
+- `RQ-TRAV-001`: TileTraversability deny-wins and cannot materialize missing topology;
+- `RQ-OCC-001`: TileOccupancy capacity composition is deterministic and contradictory bounds fault;
+- `RQ-CORE-001`: CoreClassification ADD then REMOVE_CORE deny-wins;
+- `RQ-PURE-001`: every Rule Query evaluation consumes zero RNG, emits zero Events, and mutates zero state.
