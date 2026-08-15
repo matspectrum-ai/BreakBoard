@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:breakboard:schema:state:0.1",
+  "title": "BreakBoard State Contracts v0.1",
+  "$defs": {
+    "Id": {"type": "string", "minLength": 1},
+    "ContentId": {"type": "string", "pattern": "^BB-[A-Z0-9-]+$"},
+    "Coordinate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["column_index", "row_index"],
+      "properties": {
+        "column_index": {"type": "integer", "minimum": 0},
+        "row_index": {"type": "integer", "minimum": 0}
+      }
+    },
+    "TileState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tile_id", "coordinate", "feature_instances"],
+      "properties": {
+        "tile_id": {"$ref": "#/$defs/Id"},
+        "coordinate": {"$ref": "#/$defs/Coordinate"},
+        "feature_instances": {"type": "array", "items": {"$ref": "#/$defs/Id"}, "uniqueItems": true}
+      }
+    },
+    "SideState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["side_id", "role", "orientation"],
+      "properties": {
+        "side_id": {"$ref": "#/$defs/Id"},
+        "role": {"enum": ["PLAYER", "ENEMY"]},
+        "orientation": {"enum": ["ROW_INCREASING", "ROW_DECREASING"]}
+      }
+    },
+    "PieceState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["piece_id", "side_id", "archetype_id", "lifecycle", "mutation_instance_ids"],
+      "properties": {
+        "piece_id": {"$ref": "#/$defs/Id"},
+        "piece_slot_id": {"$ref": "#/$defs/Id"},
+        "side_id": {"$ref": "#/$defs/Id"},
+        "archetype_id": {"$ref": "#/$defs/ContentId"},
+        "lifecycle": {"enum": ["ACTIVE", "REMOVED"]},
+        "coordinate": {"$ref": "#/$defs/Coordinate"},
+        "mutation_instance_ids": {"type": "array", "items": {"$ref": "#/$defs/Id"}, "uniqueItems": true},
+        "runtime_state": {"type": "object"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"lifecycle": {"const": "ACTIVE"}}, "required": ["lifecycle"]},
+          "then": {"required": ["coordinate"]},
+          "else": {"not": {"required": ["coordinate"]}}
+        }
+      ]
+    },
+    "MutationInstance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mutation_instance_id", "content_id", "lifetime", "activation_sequence", "runtime_state"],
+      "properties": {
+        "mutation_instance_id": {"$ref": "#/$defs/Id"},
+        "content_id": {"$ref": "#/$defs/ContentId"},
+        "owner_ref": {"$ref": "#/$defs/Id"},
+        "target_ref": {"$ref": "#/$defs/Id"},
+        "lifetime": {"enum": ["instant", "turn", "battle", "run"]},
+        "activation_sequence": {"type": "integer", "minimum": 0},
+        "runtime_state": {"type": "object"}
+      }
+    },
+    "ScheduledEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheduled_effect_id", "source_ref", "due", "effect", "invalid_target_policy"],
+      "properties": {
+        "scheduled_effect_id": {"$ref": "#/$defs/Id"},
+        "source_ref": {"$ref": "#/$defs/Id"},
+        "due": {"type": "object"},
+        "effect": {"type": "object"},
+        "snapshot": {"type": "object"},
+        "invalid_target_policy": {"enum": ["SKIP", "FAIL_RESOLUTION"]}
+      }
+    },
+    "GameState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tiles", "sides", "pieces", "mutation_instances", "active_side_id", "turn", "round", "action_allowance", "scheduled_effects", "collapse", "rng_cursors"],
+      "properties": {
+        "tiles": {"type": "array", "items": {"$ref": "#/$defs/TileState"}},
+        "sides": {"type": "array", "items": {"$ref": "#/$defs/SideState"}, "minItems": 2},
+        "pieces": {"type": "array", "items": {"$ref": "#/$defs/PieceState"}},
+        "mutation_instances": {"type": "array", "items": {"$ref": "#/$defs/MutationInstance"}},
+        "active_side_id": {"$ref": "#/$defs/Id"},
+        "turn": {"type": "integer", "minimum": 0},
+        "round": {"type": "integer", "minimum": 0},
+        "action_allowance": {"type": "integer", "minimum": 0},
+        "scheduled_effects": {"type": "array", "items": {"$ref": "#/$defs/ScheduledEffect"}},
+        "collapse": {"type": "object"},
+        "rng_cursors": {"type": "object"}
+      }
+    },
+    "BattleState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["battle_id", "content_version", "ruleset_version", "phase", "game_state", "event_sequence"],
+      "properties": {
+        "battle_id": {"$ref": "#/$defs/Id"},
+        "content_version": {"type": "string"},
+        "ruleset_version": {"type": "string"},
+        "phase": {"enum": ["SETUP", "STARTING", "ACTIVE", "RESOLVING", "ENDED", "FAULTED"]},
+        "game_state": {"$ref": "#/$defs/GameState"},
+        "event_sequence": {"type": "integer", "minimum": 0},
+        "result": {"enum": ["PLAYER_VICTORY", "PLAYER_DEFEAT", "DOUBLE_BREAK", "FAULT"]},
+        "fault_record": {"type": "object"}
+      }
+    },
+    "ArmySlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["piece_slot_id", "archetype_id", "piece_mutation_ids"],
+      "properties": {
+        "piece_slot_id": {"$ref": "#/$defs/Id"},
+        "archetype_id": {"$ref": "#/$defs/ContentId"},
+        "piece_mutation_ids": {"type": "array", "items": {"$ref": "#/$defs/ContentId"}, "uniqueItems": true},
+        "run_state": {"type": "object"}
+      }
+    },
+    "RewardOffer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reward_offer_id", "reward_class", "candidate_ids", "status"],
+      "properties": {
+        "reward_offer_id": {"$ref": "#/$defs/Id"},
+        "reward_class": {"type": "string"},
+        "candidate_ids": {"type": "array", "items": {"$ref": "#/$defs/ContentId"}, "minItems": 1, "uniqueItems": true},
+        "status": {"enum": ["UNRESOLVED", "RESOLVED", "DECLINED"]},
+        "selected_candidate_id": {"$ref": "#/$defs/ContentId"},
+        "target_ref": {"$ref": "#/$defs/Id"},
+        "replacement_ref": {"$ref": "#/$defs/Id"}
+      }
+    },
+    "RunState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "generation_identity", "status", "army_slots", "rule_mutation_ids", "reward_offers", "encounter_history"],
+      "properties": {
+        "run_id": {"$ref": "#/$defs/Id"},
+        "generation_identity": {"type": "object"},
+        "status": {"enum": ["CREATED", "ACTIVE", "COMPLETED", "FAILED", "ABANDONED", "FAULTED"]},
+        "current_region_id": {"$ref": "#/$defs/Id"},
+        "current_node_id": {"$ref": "#/$defs/Id"},
+        "army_slots": {"type": "array", "items": {"$ref": "#/$defs/ArmySlot"}},
+        "rule_mutation_ids": {"type": "array", "items": {"$ref": "#/$defs/ContentId"}, "uniqueItems": true},
+        "reward_offers": {"type": "array", "items": {"$ref": "#/$defs/RewardOffer"}},
+        "encounter_history": {"type": "array", "items": {"type": "object"}},
+        "route_state": {"type": "object"}
+      }
+    },
+    "ProfileState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "schema_version", "unlocked_content_ids", "achievements"],
+      "properties": {
+        "profile_id": {"$ref": "#/$defs/Id"},
+        "schema_version": {"type": "string"},
+        "unlocked_content_ids": {"type": "array", "items": {"$ref": "#/$defs/ContentId"}, "uniqueItems": true},
+        "achievements": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "cosmetics": {"type": "object"},
+        "progression_history": {"type": "object"}
+      }
+    }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/BattleState"},
+    {"$ref": "#/$defs/RunState"},
+    {"$ref": "#/$defs/ProfileState"}
+  ]
+}
