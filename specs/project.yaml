@@ -13,7 +13,7 @@ execution:
 current_gate:
   id: BB-CONTRACT-GATE-001
   name: formal_domain_contracts_verification_plan_v0_1
-  status: not_started
+  status: in_progress
 completed_gates:
   - initial_concept
   - paper_prototype_v0_1
@@ -25,6 +25,20 @@ completed_gates:
   - ux_interaction_system_v0_1
   - visual_identity_procedural_art_system_v0_1
   - audio_music_haptics_system_v0_1
+contract_progress:
+  schema_notation: json_schema_2020_12
+  domain_model: draft_v0_1
+  state_contracts: draft_v0_1
+  resolution_contract: draft_v0_1
+  rng_persistence_contract: draft_v0_1
+  content_contracts: draft_v0_1
+  verification_plan: draft_v0_1
+blocking_contract_items:
+  - rule_query_composition_algebra
+  - resolution_budget_accounting
+  - cycle_signature
+  - mid_battle_interruption_classification
+  - p0_traceability_audit
 core:
   genre: [tactical_board_game, roguelite, strategy]
   mutation_domains: [piece, board, rule]
@@ -45,6 +59,14 @@ audio:
   haptics_required: false
   semantic_intents: true
   adaptive_music: true
+contracts:
+  canonical_schema_notation: json_schema_2020_12
+  generated_language_types_are_authoritative: false
+  action_legality_is_pure: true
+  operation_group_atomic: true
+  events_immutable_after_commit: true
+  forced_removal_authority: kernel_lifecycle_only
+  presentation_state_authoritative: false
 canonical_entrypoints:
   agent_protocol: AGENTS.md
   master_spec: docs/MASTER-SPEC.md
@@ -65,16 +87,17 @@ canonical_entrypoints:
   music_system: docs/audio/MUSIC-SYSTEM.md
   haptics: docs/audio/HAPTICS.md
   audio_asset_policy: docs/audio/ASSET-POLICY.md
+  domain_model: docs/contracts/DOMAIN-MODEL.md
+  state_contracts: docs/contracts/STATE-CONTRACTS.md
+  resolution_contract: docs/contracts/RESOLUTION-CONTRACT.md
+  rng_persistence_contract: docs/contracts/RNG-PERSISTENCE-CONTRACT.md
+  content_contracts: docs/contracts/CONTENT-CONTRACTS.md
+  verification_plan: docs/contracts/VERIFICATION-PLAN.md
   open_questions: docs/OPEN-QUESTIONS.md
   traceability: docs/TRACEABILITY.md
 next_allowed_work:
-  - domain_contracts
-  - state_schemas
-  - action_operation_event_contracts
-  - board_piece_contracts
-  - rng_namespace_contract
-  - content_schemas
-  - persistence_versioning_contracts
-  - requirement_test_traceability
-  - red_first_verification_plan
-  - implementation_unlock_criteria
+  - rule_query_composition_algebra
+  - resolution_budget_cycle_signature
+  - interruption_recovery_classification
+  - p0_requirement_traceability_audit
+  - contract_consistency_review
